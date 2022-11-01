@@ -1,0 +1,62 @@
+---
+openapi: 3.0.0
+info:
+  title: admission-prediction-api
+  description: The API for the Admission Prediction project
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/yiqunz/HW4/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /predict:
+    get:
+      tags:
+      - Predict
+      description: returns predicted value
+      operationId: getPredict
+      parameters:
+      - name: G3
+        in: query
+        description: final grade to predict
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+      - name: activities
+        in: query
+        description: boolean of extra-curricular activities to predict
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          format: boolean
+      - name: failures
+        in: query
+        description: number of past class failures to predict
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          format: int32
+      - name: school
+        in: query
+        description: binary value of student's school to predict
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          format: boolean
+      responses:
+        "200":
+          description: predict value
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: uri
+components: {}
