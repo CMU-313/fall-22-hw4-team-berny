@@ -6,6 +6,8 @@ info:
   version: 1.0.0
 servers:
 - url: https://virtserver.swaggerhub.com/yiqunz/HW4/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: http://localhost/
   description: Admission Prediction Api
 paths:
   /predict:
@@ -15,15 +17,6 @@ paths:
       description: returns predicted value
       operationId: getPredict
       parameters:
-      - name: G3
-        in: query
-        description: final grade to predict
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-          format: int32
       - name: activities
         in: query
         description: boolean of extra-curricular activities to predict
@@ -53,12 +46,13 @@ paths:
           format: boolean
       responses:
         "200":
-          description: predict value
+          description: OK
           content:
             application/json:
               schema:
-                type: integer
-                format: uri
+                $ref: '#/components/schemas/Prediction'
+              example:
+                G3_prediction: 10
         "400":
           description: Bad request
           content:
@@ -67,6 +61,12 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Prediction:
+      type: object
+      properties:
+        G3_prediction:
+          type: integer
+          format: int32
     Error:
       type: object
       properties:
