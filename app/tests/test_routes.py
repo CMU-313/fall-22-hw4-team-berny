@@ -19,10 +19,17 @@ def test_predict_route():
     configure_routes(app)
     client = app.test_client()
     url = '/predict'
-    response = client.get(url, data={
+    response1 = client.get(url, data={
         "G3": 1,
         "activities": True,
         "failures": True,
         "school": False
     })
-    assert response.status_code == 200
+    assert response1.status_code == 200
+    response2 = client.get(url, data={
+        "G3": "No",
+        "activities": "1",
+        "failures": 1,
+        "school": "False"
+    })
+    assert response2.status_code != 200
