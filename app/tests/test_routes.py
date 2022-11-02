@@ -25,6 +25,9 @@ def test_predict_route():
         "school": False
     })
     assert response1.status_code == 200
+    assert isinstance(response1.data['G3'],int)
+    assert response1.data['G3'] >= 0
+    assert response1.data['G3']<=20
     response2 = client.get(url, data={
         "activities": "1",
         "failures": 1,
