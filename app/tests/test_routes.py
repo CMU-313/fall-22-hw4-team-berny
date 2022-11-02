@@ -32,4 +32,4 @@ def test_predict_route():
         "failures": 1,
         "school": "False"
     })
-    assert response2.status_code != 200
+    assert response2.status_code == 400
