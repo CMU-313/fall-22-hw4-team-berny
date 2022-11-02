@@ -6,7 +6,7 @@ info:
   version: 1.0.0
 servers:
 - url: https://virtserver.swaggerhub.com/yiqunz/HW4/1.0.0
-  description: SwaggerHub API Auto Mocking
+  description: Admission Prediction Api
 paths:
   /predict:
     get:
@@ -59,4 +59,18 @@ paths:
               schema:
                 type: integer
                 format: uri
-components: {}
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        description:
+          type: string
