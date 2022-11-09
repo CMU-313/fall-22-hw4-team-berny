@@ -26,7 +26,7 @@ def test_prediction_route():
     client = app.test_client()
     correct = 0
     total = 0
-    df = pd.read_csv('../data/student-mat.csv', sep=';')
+    df = pd.read_csv('data/student-mat.csv', sep=';')
     for ind in df.index:
         total += 1
         studytime = df['studytime'][ind]
@@ -42,6 +42,5 @@ def test_prediction_route():
         assert (int(response.get_data()) == 1 or int(response.get_data()) == 0)
         if int(response.get_data()) == qual_student:
             correct += 1
-    
     assert 0.5 < (correct / total)
     
