@@ -17,15 +17,15 @@ paths:
       description: returns predicted value
       operationId: getPredict
       parameters:
-      - name: activities
+      - name: absence
         in: query
-        description: boolean of extra-curricular activities to predict
+        description: number of times students absent to class
         required: false
         style: form
         explode: true
         schema:
-          type: boolean
-          format: boolean
+          type: integer
+          format: int32
       - name: failures
         in: query
         description: number of past class failures to predict
@@ -35,15 +35,15 @@ paths:
         schema:
           type: integer
           format: int32
-      - name: school
+      - name: studytime
         in: query
-        description: binary value of student's school to predict
+        description: number of times students learn
         required: false
         style: form
         explode: true
         schema:
-          type: boolean
-          format: boolean
+          type: integer
+          format: int32
       responses:
         "200":
           description: OK
