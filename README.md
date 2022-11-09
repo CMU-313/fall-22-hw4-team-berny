@@ -1,7 +1,7 @@
 # HW4 Starter Code and Instructions
 #### What We Did:
 - Change the model with new features - absences, failures and studytime.
--- For absences, instead of original data, we set absences that are larger than or equal to 10 as 10.
+  - For absences, instead of original data, we set absences that are larger than or equal to 10 as 10.
 - We tried to evaluate information gain for each feature to train the data. However, the typical method for decision trees doesn't work here.
 - As a result, we retrain our data by our intuition for features that are possibly useful when evaluating applicants
 - We split the data into 2 halves - one for train and one for test. This allows us to have a cross validation.
