@@ -19,15 +19,22 @@ def configure_routes(app):
     @app.route('/predict')
     def predict():
         #use entries from the query string here but could also use json
-        age = request.args.get('age')
-        absences = request.args.get('absences')
-        health = request.args.get('health')
-        data = [[age], [health], [absences]]
+        studytime = int(request.args.get('studytime'))
+        failures = int(request.args.get('failures'))
+        absences = int(request.args.get('absences'))
+        if absences>=10:
+            absences=10
+        else:
+            absences = absences
+        
+
+        data = [[absences], [failures], [studytime]]
+        print(data)
         query_df = pd.DataFrame({
-            'age': pd.Series(age),
-            'health': pd.Series(health),
-            'absences': pd.Series(absences)
+            'absences': pd.Series(absences),
+            'failures': pd.Series(failures),
+            'studytime': pd.Series(studytime)
         })
         query = pd.get_dummies(query_df)
         prediction = clf.predict(query)
-        return jsonify(np.asscalar(prediction))
+        return jsonify(np.ndarray.item(prediction))
