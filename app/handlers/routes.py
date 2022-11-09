@@ -19,24 +19,21 @@ def configure_routes(app):
     @app.route('/predict')
     def predict():
         #use entries from the query string here but could also use json
-        higher_bool = request.args.get('higher') 
+        studytime = int(request.args.get('studytime'))
         failures = int(request.args.get('failures'))
-        schoolsup_bool = request.args.get('schoolsup')
-        if higher_bool == "yes":
-            higher_bool = 1
+        absences = int(request.args.get('absences'))
+        if absences>=10:
+            absences=10
         else:
-            higher_bool = 0
-        if schoolsup_bool == "yes":
-            schoolsup_bool = 1
-        else:
-            schoolsup_bool = 0
+            absences = absences
+        
 
-        data = [[higher_bool], [failures], [schoolsup_bool]]
+        data = [[absences], [failures], [studytime]]
         print(data)
         query_df = pd.DataFrame({
-            'higher_bool': pd.Series(higher_bool),
+            'absences': pd.Series(absences),
             'failures': pd.Series(failures),
-            'schoolsup_bool': pd.Series(schoolsup_bool)
+            'studytime': pd.Series(studytime)
         })
         query = pd.get_dummies(query_df)
         prediction = clf.predict(query)
